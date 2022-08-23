@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
 
   logout() {
     this.oidcSecurityService.logoff();
+    document.location.reload();
   }
 
 }
