@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
 
   login() {
     this.oidcSecurityService.authorize();
-    console.log("sessionStorage authnResult = " + sessionStorage.getItem('authnResult');
+    console.log("sessionStorage authnResult = " + sessionStorage.getItem('authnResult'));
   }
 
   logout() {
