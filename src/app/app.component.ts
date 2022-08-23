@@ -8,11 +8,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'test2';
+  title = 'OpenID Connect 認証デモ';
   userData$: Observable<UserDataResult>;
   configuration: OpenIdConfiguration;
   isAuthenticated = false;
-  token = '';
   
   constructor(public oidcSecurityService: OidcSecurityService) {
     this.configuration = this.oidcSecurityService.getConfiguration();
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit{
 
   login() {
     this.oidcSecurityService.authorize();
-    this.token = sessionStorage.getItem('authnResult');
+    //this.token = sessionStorage.getItem('authnResult');
   }
 
   logout() {
