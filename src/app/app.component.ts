@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   userData$: Observable<UserDataResult>;
   configuration: OpenIdConfiguration;
   isAuthenticated = false;
+  token = '';
   
   constructor(public oidcSecurityService: OidcSecurityService) {
     this.configuration = this.oidcSecurityService.getConfiguration();
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit{
 
   login() {
     this.oidcSecurityService.authorize();
-    console.log("sessionStorage authnResult = " + sessionStorage.getItem('authnResult'));
+    this.token = sessionStorage.getItem('authnResult');
   }
 
   logout() {
