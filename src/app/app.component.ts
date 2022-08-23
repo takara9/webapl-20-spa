@@ -25,24 +25,23 @@ export class AppComponent implements OnInit{
       } else {
         this.isAuthenticated = false
       }
+      this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken, configId }) => {
+          console.log("x isAuthenticated = ", isAuthenticated);
+          console.log("x accessToken = ", accessToken);
+          console.log("x idToken = ", idToken);      
+      });
     });
   }
 
 
-
-
   login() {
     this.oidcSecurityService.authorize();
-    //this.token = sessionStorage.getItem('authnResult');
 
     this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken, configId }) => {
       console.log("isAuthenticated = ", isAuthenticated);
       console.log("accessToken = ", accessToken);
       console.log("idToken = ", idToken);      
-
     });    
-
-    
   }
 
   logout() {
