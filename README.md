@@ -1,27 +1,42 @@
-# Test2
+# Angular + OIDC認証のテストアプリ
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
-## Development server
+## コードの修正
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+~~~
+git clone ssh://git@github.com/takara9/webapl-20-spa
+cd webapl-20-spa
+~~~
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+~~~
+git push
+~~~
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## コンテナのビルドとレジストリ登録
 
-## Running unit tests
+~~~
+docker build -t maho/webapl-20-spa:0.1 .
+docker login
+docker push maho/webapl-20-spa:0.1
+~~~
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ビルドキャッシュのクリア
 
-## Running end-to-end tests
+~~~
+docker system df
+docker builder prune
+~~~
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## コンテナとして実行
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+~~~
+docker run -it --name t3 -p 4200:4200 maho/webapl-20-spa:0.1 bash
+~~~
+
+
+~~~
+docker run -d --name t4 -p 4200:4200 maho/webapl-20-spa:0.1
+~~~
